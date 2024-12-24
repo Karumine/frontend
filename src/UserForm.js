@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const UserForm = ({ user, onSave }) => {
@@ -8,6 +8,19 @@ const UserForm = ({ user, onSave }) => {
     const [age, setAge] = useState(user ? user.age : '');
     const [gender, setGender] = useState(user ? user.gender : '');
 
+    useEffect(() => {
+        if (user) {
+            setFullName(user.fullName || '');
+            setNickname(user.nickname || '');
+            setBirthDate(user.birthDate || '');
+            setAge(user.age || '');
+            setGender(user.gender || '');
+        }
+        console.log('asdasd');
+
+    }, [user]);
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const newUser = { fullName, nickname, birthDate, age, gender };
@@ -15,14 +28,32 @@ const UserForm = ({ user, onSave }) => {
         if (user) {
             // Update existing user
             axios.put(`http://localhost:5000/api/user/${user.id}`, newUser)
-                .then(response => onSave(response.data))
-                .catch(error => console.log(error));
+                .then(response => {
+                    onSave(response.data);
+                    resetForm();
+                })
+                .catch(error => console.log(error))
         } else {
             // Add new user
             axios.post('http://localhost:5000/api/user', newUser)
-                .then(response => onSave(response.data))
-                .catch(error => console.log(error));
+                .then(response => {
+                    onSave(response.data)
+                    resetForm();
+                })
+                .catch(error => console.log(error))
         }
+
+    };
+
+
+    const disabled = !fullName || !nickname || !birthDate || !age || gender === 'Select';
+
+    const resetForm = () => {
+        setFullName('');
+        setNickname('');
+        setBirthDate('');
+        setAge('');
+        setGender('');
     };
 
     return (
@@ -46,17 +77,24 @@ const UserForm = ({ user, onSave }) => {
                 onChange={(e) => setBirthDate(e.target.value)}
             />
             <input
-                type="number"
+                type="text"
                 placeholder="Age"
                 value={age}
-                onChange={(e) => setAge(e.target.value)}
+                onChange={(e) => {
+                    // ตรวจสอบให้แน่ใจว่าเป็นตัวเลข
+                    const newAge = e.target.value;
+                    if (/^\d*$/.test(newAge)) {
+                        setAge(newAge);
+                    }
+                }}
             />
             <select value={gender} onChange={(e) => setGender(e.target.value)}>
-                <option value="Select">เลือกเพศ</option>
-                <option value="Male">ชาย</option>
-                <option value="Female">หญิง</option>
+                <option value="Select">gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
             </select>
-            <button type="submit">{user ? 'Update' : 'Add'} User</button>
+            <button type="submit" disabled={disabled}>
+                {user ? 'อัพเดท' : 'เพิ่ม'} </button>
         </form>
     );
 };

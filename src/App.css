@@ -5,7 +5,19 @@ body {
   font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
-  background: linear-gradient(135deg, #1d2b64, #f8cdda, #9a7dff, #e3a6ff);
+  background: linear-gradient(135deg,
+      rgb(255, 0, 0),
+      rgb(255, 128, 0),
+      rgb(255, 255, 0),
+      rgb(128, 255, 0),
+      rgb(0, 255, 0),
+      rgb(0, 255, 128),
+      rgb(0, 255, 255),
+      rgb(0, 128, 255),
+      rgb(0, 0, 255),
+      rgb(128, 0, 255),
+      rgb(255, 0, 255),
+      rgb(255, 0, 128));
   /* ไล่สีเหมือนท้องฟ้าในช่วงเช้าและตอนกลางคืน */
   background-size: 400% 400%;
   animation: gradientAnimation 20s ease infinite;
@@ -36,10 +48,14 @@ body {
 /* กรอบของ .App */
 .App {
   display: flex;
-  flex-direction: column; /* จัดเรียงเนื้อหาภายในเป็นแนวตั้ง */
-  justify-content: flex-start; /* จัดให้เนื้อหาเริ่มจากด้านบน */
-  align-items: center; /* จัดให้อยู่กลางแนวนอน */
-  text-align: center; /* ตั้งค่าให้ข้อความอยู่กลาง */
+  flex-direction: column;
+  /* จัดเรียงเนื้อหาภายในเป็นแนวตั้ง */
+  justify-content: flex-start;
+  /* จัดให้เนื้อหาเริ่มจากด้านบน */
+  align-items: center;
+  /* จัดให้อยู่กลางแนวนอน */
+  text-align: center;
+  /* ตั้งค่าให้ข้อความอยู่กลาง */
   padding: 20px;
   box-sizing: border-box;
   width: 100%;
@@ -51,8 +67,10 @@ h1 {
   font-weight: bold;
   color: #ffffff;
   margin-bottom: 30px;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* เพิ่มเอฟเฟ็กต์เงาให้ตัวอักษร */
-  letter-spacing: 2px; /* เพิ่มช่องระหว่างตัวอักษร */
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  /* เพิ่มเอฟเฟ็กต์เงาให้ตัวอักษร */
+  letter-spacing: 2px;
+  /* เพิ่มช่องระหว่างตัวอักษร */
   animation: glowingText 1.5s ease-in-out infinite alternate;
 }
 
@@ -61,6 +79,7 @@ h1 {
   0% {
     text-shadow: 0 0 5px #ffffff, 0 0 10px #ff00ff, 0 0 15px #ff00ff;
   }
+
   100% {
     text-shadow: 0 0 10px #ffffff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
   }
@@ -68,20 +87,26 @@ h1 {
 
 /* user-form-container */
 .user-form-container {
-  flex: 1; /* ให้กรอบนี้ขยายเต็มที่ */
-  background-color: rgba(0, 0, 0, 0.7); /* พื้นหลังโปร่งแสง */
+  flex: 1;
+  /* ให้กรอบนี้ขยายเต็มที่ */
+  background-color: rgba(0, 0, 0, 0.7);
+  /* พื้นหลังโปร่งแสง */
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
-  width: 400px; /* ความกว้างของกรอบ */
+  width: 400px;
+  /* ความกว้างของกรอบ */
   display: flex;
-  flex-direction: column; /* แนวตั้ง */
-  align-items: center; /* จัดกึ่งกลาง */
+  flex-direction: column;
+  /* แนวตั้ง */
+  align-items: center;
+  /* จัดกึ่งกลาง */
 }
 
 .user-form-container h2 {
   margin-bottom: 20px;
-  color: #ffffff; /* เปลี่ยนสีหัวข้อ */
+  color: #ffffff;
+  /* เปลี่ยนสีหัวข้อ */
   font-size: 24px;
   font-weight: bold;
   animation: glowingText 1.5s ease-in-out infinite alternate;
@@ -90,16 +115,22 @@ h1 {
 
 /* กรอบของ UserForm */
 form {
-  flex: 1; /* ให้กรอบนี้ขยายเต็มที่ */
+  flex: 1;
+  /* ให้กรอบนี้ขยายเต็มที่ */
   padding: 25px;
   box-sizing: border-box;
-  backdrop-filter: blur(10px); /* เพิ่มเอฟเฟ็กต์เบลอเบื้องหลัง */
+  backdrop-filter: blur(10px);
+  /* เพิ่มเอฟเฟ็กต์เบลอเบื้องหลัง */
 }
 
+
+
 /* ช่องกรอกข้อมูล */
-input, select {
-  background: rgba(255, 255, 255, 0.2); /* ทำให้พื้นหลังโปร่งแสง */
-  color:#ff00ff;
+input[type="text"],
+input[type="date"],
+input[type="number"],
+select {
+  /* ทำให้พื้นหลังโปร่งแสง */
   padding: 12px;
   border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 10px;
@@ -109,41 +140,63 @@ input, select {
   margin-bottom: 15px;
   box-sizing: border-box;
   transition: all 0.4s ease-out;
+
 }
 
 /* เมื่อช่องกรอกข้อมูลถูกเลือก */
-input:focus, select:focus {
+input:focus,
+select:focus {
   border: 2px solid #ff80ab;
   outline: none;
   box-shadow: 0 0 12px rgba(255, 80, 171, 0.6);
-  background: rgba(255, 255, 255, 0.3); /* เพิ่มความสว่างเมื่อมีการเลือก */
+  background-color: #f9f9f9;
+  /* สีพื้นหลัง */
+  /* เพิ่มความสว่างเมื่อมีการเลือก */
 }
+
 
 /* ปุ่มสวยๆ ที่มีเอฟเฟ็กต์ */
 button {
-  background-color: #ff80ab; /* สีพื้นหลัง */
-  color: white; /* สีตัวอักษร */
-  padding: 12px 24px; /* ระยะห่างภายในปุ่ม */
-  border: none; /* ไม่มีเส้นขอบ */
-  border-radius: 15px; /* มุมโค้งมน */
-  cursor: pointer; /* แสดงมือเมื่อเอาเมาส์ไปวาง */
-  font-size: 1.1rem; /* ขนาดตัวอักษร */
-  font-weight: bold; /* ตัวอักษรหนา */
-  transition: all 0.3s ease-in-out; /* เอฟเฟ็กต์การเปลี่ยนแปลงทุกอย่าง */
-  margin-top: 15px; /* เว้นระยะห่างจากปุ่มด้านบน */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* เงาของปุ่ม */
+  background-color: #ff80ab;
+  /* สีพื้นหลัง */
+  color: white;
+  /* สีตัวอักษร */
+  padding: 12px 24px;
+  /* ระยะห่างภายในปุ่ม */
+  border: none;
+  /* ไม่มีเส้นขอบ */
+  border-radius: 15px;
+  /* มุมโค้งมน */
+  cursor: pointer;
+  /* แสดงมือเมื่อเอาเมาส์ไปวาง */
+  font-size: 1.1rem;
+  /* ขนาดตัวอักษร */
+  font-weight: bold;
+  /* ตัวอักษรหนา */
+  transition: all 0.3s ease-in-out;
+  /* เอฟเฟ็กต์การเปลี่ยนแปลงทุกอย่าง */
+  margin-top: 15px;
+  /* เว้นระยะห่างจากปุ่มด้านบน */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  /* เงาของปุ่ม */
 }
 
 button:hover {
-  background-color: #ff4081; /* สีพื้นหลังเมื่อเอาเมาส์ไปวาง */
-  transform: scale(1.05); /* ขยายขนาดของปุ่มเล็กน้อย */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* เพิ่มเงาให้ปุ่มเมื่อโฮเวอร์ */
+  background-color: #ff4081;
+  /* สีพื้นหลังเมื่อเอาเมาส์ไปวาง */
+  transform: scale(1.05);
+  /* ขยายขนาดของปุ่มเล็กน้อย */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  /* เพิ่มเงาให้ปุ่มเมื่อโฮเวอร์ */
 }
 
 button:active {
-  background-color: #e040fb; /* สีพื้นหลังเมื่อคลิก */
-  transform: scale(0.98); /* ลดขนาดของปุ่มเล็กน้อยเมื่อคลิก */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* ลดเงาเมื่อคลิก */
+  background-color: #e040fb;
+  /* สีพื้นหลังเมื่อคลิก */
+  transform: scale(0.98);
+  /* ลดขนาดของปุ่มเล็กน้อยเมื่อคลิก */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* ลดเงาเมื่อคลิก */
 }
 
 
@@ -151,18 +204,26 @@ button:active {
 /************************UserList***********************/
 /* ปรับให้ UserList อยู่ทางขวาของหน้าจอ */
 .user-list-container {
-  position: fixed; /* ใช้ fixed เพื่อให้ตำแหน่งคงที่ */
-  top: 20px; /* ตั้งตำแหน่งจากด้านบน */
-  right: 20px; /* ตั้งตำแหน่งจากขวา */
-  background-color: rgba(0, 0, 0, 0.7); /* เพิ่มพื้นหลังโปร่งแสง */
+  position: fixed;
+  /* ใช้ fixed เพื่อให้ตำแหน่งคงที่ */
+  top: 20px;
+  /* ตั้งตำแหน่งจากด้านบน */
+  right: 20px;
+  /* ตั้งตำแหน่งจากขวา */
+  background-color: rgba(0, 0, 0, 0.7);
+  /* เพิ่มพื้นหลังโปร่งแสง */
   color: white;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
-  width: 400px; /* กำหนดความกว้าง */
-  max-height: 90vh; /* จำกัดความสูง */
-  overflow-y: auto; /* ถ้ามีข้อมูลเกินให้เลื่อน */
-  z-index: 10; /* เพื่อให้แน่ใจว่า UserList อยู่ด้านบน */
+  width: 400px;
+  /* กำหนดความกว้าง */
+  max-height: 90vh;
+  /* จำกัดความสูง */
+  overflow-y: auto;
+  /* ถ้ามีข้อมูลเกินให้เลื่อน */
+  z-index: 10;
+  /* เพื่อให้แน่ใจว่า UserList อยู่ด้านบน */
   animation: glowingText 1.5s ease-in-out infinite alternate;
 }
 
@@ -192,4 +253,17 @@ button {
 
 button:hover {
   background-color: #9c27b0;
+}
+
+
+
+
+/********************************cssขึ้นลง*****************/
+.user-list-container {
+
+  opacity: 1;
+}
+
+.user-list-container.collapsed {
+  max-height: 0;
 }
