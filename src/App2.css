@@ -1,0 +1,17 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #1d2b64, #f8cdda, #9a7dff, #e3a6ff);
+    /* ไล่สีเหมือนท้องฟ้าในช่วงเช้าและตอนกลางคืน */
+    background-size: 400% 400%;
+    animation: gradientAnimation 20s ease infinite;
+    /* ทำให้พื้นหลังเคลื่อนไหว */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
